@@ -273,6 +273,13 @@ http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         src='This is an evil\xa0space'
         html = xoxo.toXOXO(src)
         self.assertEqual(src,xoxo.fromXOXO(html).encode('windows-1252'))
+    def testUrlList(self):
+        '''handle the mf2 case where url is a list'''
+        d={'url':['http://example.com/']}
+        html = xoxo.toXOXO(d)
+        self.assertEqual(html,'<ol class="xoxo"><li><dl><dt>url</dt><dd><ol><li>http://example.com/</li></ol></dd></dl></li></ol>')
+
+
 if __name__ == "__main__":
     unittest.main()
 else:
